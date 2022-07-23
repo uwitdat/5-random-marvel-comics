@@ -1,0 +1,43 @@
+
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 3em;
+  position: relative;
+}
+
+.comic {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  align-items: center;
+  max-width: 30rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.comic h1 {
+  font-size: 2rem;
+  margin-top: -.5em;
+  margin-bottom: -.2em;
+}
+
+.comic img {
+  border-radius: 20px;
+}
+
+.comic p {
+  color: rgb(49, 49, 49);
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
