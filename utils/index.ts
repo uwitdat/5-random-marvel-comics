@@ -1,15 +1,7 @@
-export const generateNumbers = ():number[] => {
-
-  const increments = 5;
-  const finishingNumber = 500;
-  let start = 0;
-  const numbers = [];
-
-  while(start <= finishingNumber){
-    numbers.push(start);
-    start += increments;
-  }
-
-  return numbers;
+export const getRandomInt = (min:number, max: number):number => {
+  /* generates random number between range (inclusive) */
+  
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-

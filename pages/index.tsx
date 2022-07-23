@@ -3,7 +3,7 @@ import React from 'react';
 import Comics from 'components/Comics';
 import { GetServerSideProps } from 'next/types';
 import md5 from 'md5';
-import { generateNumbers } from 'utils';
+import { getRandomInt } from 'utils';
 
 export interface Comic {
   id: number;
@@ -12,9 +12,7 @@ export interface Comic {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const offsetOptions = generateNumbers();
-  const offset =
-    offsetOptions[Math.floor(Math.random() * offsetOptions.length)];
+  const offset = getRandomInt(0, 800);
 
   const ts = Math.floor(Date.now() / 1000);
   const hash = md5(ts + process.env.PRIVATE_KEY + process.env.PUBLIC_KEY);
