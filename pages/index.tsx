@@ -3,6 +3,7 @@ import React from 'react';
 import Comics from 'components/Comics';
 import { GetServerSideProps } from 'next/types';
 import md5 from 'md5';
+import { generateNumbers } from 'utils';
 
 export interface Comic {
   id: number;
@@ -11,7 +12,7 @@ export interface Comic {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const offsetOptions = [0, 100, 200, 300, 400, 500];
+  const offsetOptions = generateNumbers();
   const offset =
     offsetOptions[Math.floor(Math.random() * offsetOptions.length)];
 
@@ -19,15 +20,13 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const hash = md5(ts + process.env.PRIVATE_KEY + process.env.PUBLIC_KEY);
 
   const res = await fetch(
-    `https://gateway.marvel.com:443/v1/public/comics?limit=100&offset=${offset}&ts=${ts}&apikey=${process.env.PUBLIC_KEY}&hash=${hash}`
+    `https://gateway.marvel.com:443/v1/public/comics?limit=5&offset=${offset}&ts=${ts}&apikey=${process.env.PUBLIC_KEY}&hash=${hash}`
   );
   const comics = await res.json();
 
-  const shuffled = comics.data.results.sort(() => 0.5 - Math.random());
-
   return {
     props: {
-      data: shuffled.slice(0, 5).map((item) => {
+      data: comics.data.results.map((item) => {
         return { id: item.id, title: item.title, sprite: item.thumbnail };
       }),
     },
