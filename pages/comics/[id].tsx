@@ -42,7 +42,7 @@ const Meme = ({ data }: { data: Comic }) => {
   return (
     <div className={styles.container}>
       <a href="/">
-        <button className={styles.button}>&larr; Back</button>
+        <button className={styles.button}>Back</button>
       </a>
       <section className={styles.comic}>
         <h1>{title}</h1>
